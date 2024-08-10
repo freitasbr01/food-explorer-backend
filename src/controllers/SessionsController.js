@@ -18,7 +18,7 @@ class SessionsController {
     });
 
     delete user.password;
-    response.status(201).json({ user, token });
+    response.status(201).json({ user });
   }
 }
 
