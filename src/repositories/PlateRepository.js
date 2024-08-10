@@ -2,9 +2,13 @@ const knex = require("../database/knex");
 const DiskStorage = require("../providers/DiskStorage");
 
 class PlateRepository {
-  async create({ title, description, category, ingredients, price, user_id }) {
+  async create({ imageFilename, title, description, category, ingredients, price, user_id }) {
+
+    const diskStorage = new DiskStorage();
+    const filename = await diskStorage.saveFile(imageFilename)
 
     const [plate_id] = await knex("plates").insert({
+      image_url: filename,
       title,
       category,
       price,
@@ -38,8 +42,8 @@ class PlateRepository {
   }
 
   async findPlatesWithIngredients(user_id, title, filterIngredients) {
-    const plates = await knex("ingredients")
-    .innerJoin("plates", "plates.id", "ingredients.plate_id")
+    const plates = await knex("plates")
+    .innerJoin("ingredients", "plates.id", "ingredients.plate_id")
     .select([
       "plates.id",
       "plates.title",
@@ -47,7 +51,7 @@ class PlateRepository {
     ])
     .where("plates.user_id", user_id)
     .whereLike("plates.title", `%${title}%`)
-    .whereIn("ingredient", filterIngredients)
+    .whereIn("ingredients.ingredient", filterIngredients)
     .groupBy("plates.id")
     .orderBy("plates.title");
 
@@ -71,15 +75,17 @@ class PlateRepository {
 
   async update({ id, imageFilename, title, category, price, description, ingredients, user_id }) {
     const plate = await knex('plates').where({ id }).first();
+    
     const diskStorage = new DiskStorage();
+    let filename = plate.image_url;
 
     if (imageFilename) {
       if (plate.image_url) {
         await diskStorage.deleteFile(plate.image_url)
       }
+      filename = await diskStorage.saveFile(imageFilename)
     }
     
-    const filename = await diskStorage.saveFile(imageFilename)
 
     const updatedPlate = {
       ...plate,

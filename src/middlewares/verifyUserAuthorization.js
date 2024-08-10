@@ -1,4 +1,3 @@
-// Separando a lógica da parte de AUTORIZAÇÃO, de fazer a verificação se o usuário tem permissão ou não para executar as rotas e funções dentro da api
 
 const AppError = require("../utils/AppError");
 

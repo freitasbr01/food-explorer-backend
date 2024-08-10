@@ -7,10 +7,21 @@ class PlatesController {
     const { title, category,  price, description, ingredients } = request.body;
     const user_id = request.user.id;
 
+    const { file } = request;
+    const imageFilename = file ? file.filename : null;
+
     const plateRepository = new PlateRepository();
     const plateCreateService = new PlateCreateService(plateRepository);
 
-    await plateCreateService.execute({ title, category, price, description, ingredients, user_id });
+    await plateCreateService.execute({ 
+      imageFilename, 
+      title, 
+      category, 
+      price, 
+      description, 
+      ingredients: JSON.parse(ingredients), 
+      user_id 
+    });
     return response.status(201).json();
   }
 
@@ -40,6 +51,8 @@ class PlatesController {
     const { title, ingredients } = request.query
     const user_id = request.user.id;
 
+
+
     const plateRepository = new PlateRepository();
 
     let plates;
@@ -47,9 +60,11 @@ class PlatesController {
     if (ingredients) {
       const filterIngredients = ingredients.split(',').map(ingredient => ingredient.trim());
       plates = await plateRepository.findPlatesWithIngredients(user_id, title, filterIngredients);
+
     } else {
       plates = await plateRepository.findPlates(user_id, title);
     }
+
 
     const userIngredients = await plateRepository.findUserIngredients(user_id);
 
@@ -63,7 +78,6 @@ class PlatesController {
     })
 
     return response.json(platesWithIngredients);
-
   }
 
   async update(request, response) {
@@ -77,8 +91,16 @@ class PlatesController {
     const plateRepository = new PlateRepository();
     const plateUpdateService = new PlateUpdateService(plateRepository);
 
-    const updatedPlate = await plateUpdateService.execute({ id, imageFilename, title, category, price, description, ingredients, user_id });
-
+    const updatedPlate = await plateUpdateService.execute({
+      id,
+      imageFilename, 
+      title, 
+      category, 
+      price, 
+      description, 
+      ingredients: JSON.parse(ingredients), 
+      user_id 
+    });
     return response.json(updatedPlate);
   }
 }
