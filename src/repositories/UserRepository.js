@@ -18,6 +18,15 @@ class UserRepository {
 
     return { id: userId };
   }
+
+  async findAll() {
+    const users = await knex('users').select('*');
+    return users;
+  }
+
+  async update({ userId, role }) {
+    await knex('users').where({ id: userId }).update({ role });
+  }
 }
 
 module.exports = UserRepository;
