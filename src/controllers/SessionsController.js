@@ -12,9 +12,9 @@ class SessionsController {
 
     response.cookie("token", token, {
       httpOnly: true,
-      sameSite: "none",
+      sameSite: "None",
       secure: true,
-      maxAge: 35 * 60 * 1000
+      maxAge: 15 * 60 * 1000
     });
 
     delete user.password;

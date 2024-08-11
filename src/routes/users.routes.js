@@ -8,9 +8,7 @@ const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const verifyUserAuthorization = require('../middlewares/verifyUserAuthorization');
 
 
-
 const usersRoutes = Router();
-
 const usersController = new UsersController();
 const usersValidatedController = new UsersValidatedController();
 
