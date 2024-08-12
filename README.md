@@ -1,7 +1,7 @@
 <h2 align="center">Food Explorer</h2>
 
 <h1 align="center">
-    <img width="600px" alt="Food Explorer" title="#Food Explorer" src="" />
+    <img width="600px" alt="Food Explorer" title="#Food Explorer" src="https://github.com/freitasbr01/food-explorer-frontend/blob/main/src/assets/food-explorer.png" />
 </h1>
 
 
@@ -33,8 +33,11 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - **JavaScript**
 - **NodeJS**
-- **ExpressJS**
+- **Express**
 - **SQLite**
+- **Knex**
+- **Git**
+
 
 ---
 
