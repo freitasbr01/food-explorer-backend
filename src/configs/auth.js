@@ -1,6 +1,6 @@
 module.exports = {
   jwt: {
     secret: process.eventNames.AUTH_SECRET || "default",
-    expiresIn: "24h"
+    expiresIn: "1d"
   }
 }
