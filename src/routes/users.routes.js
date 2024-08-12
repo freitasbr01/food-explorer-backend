@@ -19,6 +19,4 @@ usersRoutes.put('/:userId/role', ensureAuthenticated, verifyUserAuthorization(["
 usersRoutes.get('/', ensureAuthenticated, verifyUserAuthorization(["admin"]), usersController.index);
 
 
-
-
 module.exports = usersRoutes;
