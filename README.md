@@ -8,6 +8,7 @@
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
  <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-rodando-o-projeto">Rodando o Projeto</a> •
  <a href="#-autor">Autor</a>
 </p>
 
@@ -23,23 +24,71 @@ A aplicação inclui um sistema de pedidos que contabiliza os pratos selecionado
 
 Link de acesso - <a href="https://food-explorer01.netlify.app">Food Explorer</a>
 
-
 ---
 
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-
 - **JavaScript**
-- **NodeJS**
+- **Node.js**
 - **Express**
 - **SQLite**
 - **Knex**
 - **Git**
 
-
 ---
+
+## 🚀 Rodando o Projeto
+
+### 1. Clone o repositório
+Abra o terminal e execute o comando abaixo para clonar o repositório na sua máquina:
+
+```bash
+git clone https://github.com/usuario/nome-do-repositorio.git
+```
+
+
+### 2. Acesse o diretório do projeto
+Entre na pasta do projeto:
+```bash
+cd nome-do-repositorio
+```
+
+
+### 3. Instale as dependências
+Execute o comando abaixo para instalar todas as dependências listadas no arquivo package.json:
+```bash
+npm install
+```
+
+
+### 4. Configuração do banco de dados
+Este projeto utiliza SQLite como banco de dados. Certifique-se de que o banco de dados está configurado corretamente:
+Se houver um arquivo db.sqlite, ele será utilizado automaticamente.
+Caso contrário, o Knex criará o banco de dados.
+Se necessário, você pode executar as migrações do banco de dados com o seguinte comando:
+```bash
+npx knex migrate:latest
+```
+
+
+### 5. Configuração de variáveis de ambiente
+Certifique-se de criar um arquivo .env na raiz do projeto e preencher as variáveis necessárias (se houverem). Um exemplo de arquivo .env pode ser encontrado em .env.example.
+
+### 6. Execute o servidor
+Com tudo configurado, você pode iniciar o servidor backend com o seguinte comando:
+```bash
+npm run dev
+```
+
+
+### 8. Acesse o projeto
+Agora, você pode acessar o projeto no navegador utilizando a URL:
+```bash
+http://localhost:3000
+```
+
 
 ## 🦸 Autor
 
